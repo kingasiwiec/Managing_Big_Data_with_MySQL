@@ -35,7 +35,8 @@ ORDER BY
 
 
 -- Exercise 3
--- Create a text file with a list of all the customers with yearly memberships who live in the state of North Carolina (USA) and joined Dognition after March 1, 2014, sorted so that the most recent member is at the top of the list
+-- Create a text file with a list of all the customers with yearly memberships who live in the state of North Carolina (USA) and joined Dognition after March 1, 2014, 
+-- sorted so that the most recent member is at the top of the list
 
 
 customers = %sql
@@ -71,7 +72,7 @@ WHERE
 
 
 -- Exercise 5
--- What is the average amount of time it took customers to complete the "Treat Warm-Up" test, according to the exam_answers table
+-- What is the average amount of time it took customers to complete the "Treat Warm-Up" test, according to the exam_answers table?
 
 
 SELECT
