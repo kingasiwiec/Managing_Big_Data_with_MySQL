@@ -91,5 +91,5 @@ WHERE
 SELECT
     MIN(TIMESTAMPDIFF(minute, start_time, end_time)) AS minimum,
     MAX(TIMESTAMPDIFF(minute, start_time, end_time)) AS maximum
-from
+FROM
     exam_answers;
