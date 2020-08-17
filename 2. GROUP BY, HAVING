@@ -2,6 +2,7 @@
 -- Output a table that calculates the number of distinct female and male dogs in each breed group of the Dogs table, sorted by the total number of dogs in descending order.
 -- Exclude the NULL and empty string entries in the breed_group field, and (2) exclude any groups that don't have at least 1,000 distinct Dog_Guids in them.
 
+
 SELECT
     breed_group,
     gender,
@@ -20,8 +21,11 @@ ORDER BY
     number_dogs DESC;
 
 
+
 -- Exercise 2
--- Write a query that outputs the average amount of time it took customers to complete each type of test where any individual reaction times over 6000 hours are excluded and only average reaction times that are greater than 0 seconds are included
+-- Write a query that outputs the average amount of time it took customers to complete each type of test where any individual reaction times over 6000 hours are excluded and 
+-- only average reaction times that are greater than 0 seconds are included
+
 
 SELECT
     test_name,
@@ -40,8 +44,11 @@ ORDER BY
 LIMIT 100;
 
 
+
 -- Exercise 3
--- Write a query that outputs the total number of unique User_Guids in each combination of State and ZIP code in the United States that have at least 5 users, sorted first by state name in ascending alphabetical order, and second by total number of unique User_Guids in descending order
+-- Write a query that outputs the total number of unique User_Guids in each combination of State and ZIP code in the United States that have at least 5 users, 
+-- sorted first by state name in ascending alphabetical order, and second by total number of unique User_Guids in descending order
+
 
 SELECT
     state,
