@@ -1,6 +1,7 @@
 -- Exercise 1
 -- How would you extract the user_guid, membership_type, and dog_guid of all the golden retrievers who completed at least 1 Dognition test?
 
+
 SELECT DISTINCT
     dogs.user_guid,
     dogs.dog_guid,
@@ -14,8 +15,11 @@ WHERE
     AND dogs.user_guid=users.user_guid
     AND dogs.breed = 'golden retriever';
 
+
+
 -- Exercise 2
 -- How many unique Golden Retrievers who live in North Carolina are there in the database ?
+
 
 SELECT
     users.state,
@@ -35,7 +39,10 @@ HAVING
 
 
 -- Exercise 3
--- For which 3 dog breeds do we have the greatest amount of site_activity data, (as defined by non-NULL values in script_detail_id)(your answers should be "Mixed", "Labrador Retriever", and "Labrador Retriever-Golden Retriever Mix"?
+-- For which 3 dog breeds do we have the greatest amount of site_activity data, (as defined by non-NULL values in script_detail_id)(your answers should be "Mixed",
+-- "Labrador Retriever", and "Labrador Retriever-Golden Retriever Mix"?
+
+
 
 SELECT
     dogs.breed,
@@ -53,7 +60,9 @@ ORDER BY
 
 
 -- Exercise 4
--- How would you use a left join to retrieve a list of all the unique dogs in the dogs table, and retrieve a count of how many tests each one completed? Include the dog_guids and user_guids from the dogs and complete_tests tables in your output.
+-- How would you use a left join to retrieve a list of all the unique dogs in the dogs table, and retrieve a count of how many tests each one completed?
+-- Include the dog_guids and user_guids from the dogs and complete_tests tables in your output.
+
 
 SELECT DISTINCT
     dogs.dog_guid,
@@ -67,8 +76,11 @@ GROUP BY
     dog_guid;
 
 
+
 -- Exercise 5
--- Use a left join to create a list of all the unique dog_guids that are contained in the site_activities table, but not the dogs table, and how many times each one is entered. Note that there are a lot of NULL values in the dog_guid of the site_activities table, so you will want to exclude them from your list.
+-- Use a left join to create a list of all the unique dog_guids that are contained in the site_activities table, but not the dogs table, and how many times each one is entered.
+-- Note that there are a lot of NULL values in the dog_guid of the site_activities table, so you will want to exclude them from your list.
+
 
 SELECT
     site_activities.dog_guid,
