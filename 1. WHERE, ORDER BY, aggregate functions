@@ -1,6 +1,7 @@
 -- Exercise 1
 -- How would you select the Dog ID, test name, and subcategory associated with each completed test for the first 100 tests entered in October, 2014?
 
+
 SELECT
   dog_guid,
   test_name,
@@ -13,8 +14,10 @@ WHERE
     AND month(created_at) = 10
 
 
+
 -- Exercise 2
 -- Execute a query that would sort the same output as described above by membership_type first in descending order, and state second in ascending order
+
 
 SELECT
     user_guid,
@@ -34,6 +37,7 @@ ORDER BY
 -- Exercise 3
 -- Create a text file with a list of all the customers with yearly memberships who live in the state of North Carolina (USA) and joined Dognition after March 1, 2014, sorted so that the most recent member is at the top of the list
 
+
 customers = %sql
 SELECT DISTINCT
   user_guid, state,
@@ -48,8 +52,11 @@ WHERE
 ORDER BY
   created_at DESC;
 
+
+
 -- Exercise 4
 -- What is the average, minimum, and maximum ratings given to "Memory versus Pointing" game?
+
 
 SELECT
   test_name,
@@ -62,8 +69,10 @@ WHERE
   test_name = "Memory versus Pointing";
 
 
+
 -- Exercise 5
 -- What is the average amount of time it took customers to complete the "Treat Warm-Up" test, according to the exam_answers table
+
 
 SELECT
     AVG(TIMESTAMPDIFF(minute,start_time,end_time))
@@ -76,6 +85,7 @@ WHERE
 
 -- Exercise 6
 -- What is the minimum and maximum value in the Duration column of your query that included the data from the entire table?
+
 
 SELECT
     MIN(TIMESTAMPDIFF(minute, start_time, end_time)) AS minimum,
