@@ -43,7 +43,6 @@ HAVING
 -- "Labrador Retriever", and "Labrador Retriever-Golden Retriever Mix"?
 
 
-
 SELECT
     dogs.breed,
     COUNT(script_detail_id)
