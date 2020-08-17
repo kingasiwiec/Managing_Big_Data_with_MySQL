@@ -1,0 +1,63 @@
+-- Exercise 1
+-- How could you use a subquery to extract all the data from exam_answers that had test durations that were greater than the average duration for the "Yawn Warm-Up" game? Start by writing the query that gives you the average duration for the "Yawn Warm-Up" game by itself.
+
+SELECT
+    AVG(timestampdiff(minute, start_time, end_time))
+FROM
+    exam_answers
+WHERE
+    timestampdiff(minute, start_time, end_time) > 0
+    AND test_name = 'Yawn Warm-Up'
+
+
+
+-- Exercise 2
+-- Once you've verified that your subquery is written correctly on its own, incorporate it into a main query to extract all the data from exam_answers that had test durations that were greater than the average duration for the "Yawn Warm-Up" game
+
+SELECT *
+FROM
+    exam_answers
+WHERE
+    timestampdiff(minute, start_time, end_time) >
+      (
+          SELECT
+              AVG(timestampdiff(minute, start_time, end_time))
+          FROM
+              exam_answers
+          WHERE
+              timestampdiff(minute, start_time, end_time) > 0
+              AND test_name = 'Yawn Warm-Up'
+        );
+
+-- Exercise 3
+-- How could you determine the number of unique users in the users table who were NOT in the dogs table using a NOT EXISTS clause?
+
+SELECT DISTINCT
+    users.user_guid
+FROM
+    users
+WHERE NOT EXISTS
+        (
+          SELECT dogs.user_guid
+         FROM dogs
+         WHERE dogs.user_guid=users.user_guid
+        );
+
+
+-- Exercise 4
+-- Use a NOT EXISTS clause to examine all the users in the dogs table that are not in the users table
+
+
+SELECT
+    dogs.user_guid
+FROM from
+    dogs
+WHERE NOT EXISTS
+    (
+      SELECT DISTINCT
+          users.user_guid
+    FROM
+          users
+    WHERE
+          users.user_guid=dogs.user_guid
+        );
