@@ -1,0 +1,84 @@
+-- Exercise 1
+-- How would you select the Dog ID, test name, and subcategory associated with each completed test for the first 100 tests entered in October, 2014?
+
+SELECT
+  dog_guid,
+  test_name,
+  subcategory_name,
+  created_at
+FROM
+  complete_tests
+WHERE
+    year(created_at) = '2014'
+    AND month(created_at) = 10
+
+
+-- Exercise 2
+-- Execute a query that would sort the same output as described above by membership_type first in descending order, and state second in ascending order
+
+SELECT
+    user_guid,
+    state,
+    membership_type
+FROM
+    users
+WHERE
+    country = 'US'
+    AND state IS NOT NULL
+    AND membership_type IS NOT NULL
+ORDER BY
+  membership_type DESC,
+  state ASC;
+
+
+-- Exercise 3
+-- Create a text file with a list of all the customers with yearly memberships who live in the state of North Carolina (USA) and joined Dognition after March 1, 2014, sorted so that the most recent member is at the top of the list
+
+customers = %sql
+SELECT DISTINCT
+  user_guid, state,
+  created_at,
+  membership_type
+FROM
+  users
+WHERE
+  state = 'NC'
+  AND created_at > '2014-03-01'
+  AND membership_type = 2
+ORDER BY
+  created_at DESC;
+
+-- Exercise 4
+-- What is the average, minimum, and maximum ratings given to "Memory versus Pointing" game?
+
+SELECT
+  test_name,
+  AVG(rating) AS average,
+  MIN(rating) AS minimum,
+  MAX(rating) AS maximum
+FROM
+  reviews
+WHERE
+  test_name = "Memory versus Pointing";
+
+
+-- Exercise 5
+-- What is the average amount of time it took customers to complete the "Treat Warm-Up" test, according to the exam_answers table
+
+SELECT
+    AVG(TIMESTAMPDIFF(minute,start_time,end_time))
+FROM
+    exam_answers;
+WHERE
+    test_name = 'Treat Warm-Up';
+
+
+
+-- Exercise 6
+-- What is the minimum and maximum value in the Duration column of your query that included the data from the entire table?
+
+SELECT
+    MIN(TIMESTAMPDIFF(minute, start_time, end_time)) AS minimum,
+    MAX(TIMESTAMPDIFF(minute, start_time, end_time)) AS maximum
+from
+    exam_answers;
