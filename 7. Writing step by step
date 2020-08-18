@@ -1,5 +1,7 @@
 -- Exercise 1
--- Using the function you found in the websites above, write a query that will output one column with the original created_at time stamp from each row in the completed_tests table, and another column with a number that represents the day of the week associated with each of those time stamps. Limit your output to 200 rows starting at row 50.
+-- Using the function you found in the websites above, write a query that will output one column with the original created_at time stamp from each row in the completed_tests
+-- table, and another column with a number that represents the day of the week associated with each of those time stamps. Limit your output to 200 rows starting at row 50.
+
 
 SELECT
     created_at,
@@ -11,7 +13,9 @@ LIMIT 200 OFFSET 50;
 
 
 -- Exercise 2
---  Include a CASE statement in the query you wrote in Question 1 to output a third column that provides the weekday name (or an appropriate abbreviation) associated with each created_at time stamp.
+--  Include a CASE statement in the query you wrote in Question 1 to output a third column that provides the weekday name (or an appropriate abbreviation) associated with 
+-- each created_at time stamp.
+
 
 SELECT
     created_at,
@@ -31,7 +35,9 @@ LIMIT 200 OFFSET 50;
 
 
 -- Exercise 3
--- Adapt the query you wrote in Question 2 to report the total number of tests completed on each weekday. Sort the results by the total number of tests completed in descending order.
+-- Adapt the query you wrote in Question 2 to report the total number of tests completed on each weekday. Sort the results by the total number of tests completed in descending
+-- order.
+
 
 SELECT
     dayofweek(created_at),
@@ -52,8 +58,10 @@ GROUP BY
 LIMIT 200;
 
 
+
 -- Exercise 4
 -- Rewrite the query in Question 3 to exclude the dog_guids that have a value of "1" in the exclude column (Hint: this query will require a join.)
+
 
 SELECT
     dayofweek(complete_tests.created_at),
@@ -80,8 +88,11 @@ ORDER BY
 LIMIT 200;
 
 
+
 -- Exercise 5
--- Start by writing a query that retrieves distinct dog_guids common to the dogs and users table, excuding dog_guids and user_guids with a "1" in their respective exclude columns.
+-- Start by writing a query that retrieves distinct dog_guids common to the dogs and users table, excuding dog_guids and user_guids with a "1" in their respective exclude
+-- columns.
+
 
 SELECT DISTINCT
     dogs.dog_guid,
@@ -96,7 +107,8 @@ WHERE
 
 
 -- Exercise 6
--- Now adapt your query from Question 4 so that it inner joins on the result of the subquery you wrote in Question 5 instead of the dogs table. This will give you a count of the number of tests completed on each day of the week, excluding all of the dog_guids and user_guids that the Dognition team flagged in the exclude columns.
+-- Now adapt your query from Question 4 so that it inner joins on the result of the subquery you wrote in Question 5 instead of the dogs table. This will give you a count 
+-- of the number of tests completed on each day of the week, excluding all of the dog_guids and user_guids that the Dognition team flagged in the exclude columns.
 
 
 SELECT
@@ -131,7 +143,8 @@ LIMIT 50;
 
 
 -- Exercise 7
--- Adapt your query from Question 6 to provide a count of the number of tests completed on each weekday of each year in the Dognition data set. Exclude all dog_guids and user_guids with a value of "1" in their exclude columns. Sort the output by year in ascending order, and then by the total number of tests completed in descending order.
+-- Adapt your query from Question 6 to provide a count of the number of tests completed on each weekday of each year in the Dognition data set. Exclude all dog_guids and 
+-- user_guids with a value of "1" in their exclude columns. Sort the output by year in ascending order, and then by the total number of tests completed in descending order.
 
 SELECT
     dayofweek(complete_tests.created_at),
