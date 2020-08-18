@@ -1,0 +1,113 @@
+-- Exercise 1
+-- Use an IF expression and the query you wrote previousely as a subquery to determine the number of unique user_guids who reside in the United States (abbreviated "US") and outside of the US.
+
+SELECT
+    IF(user_country.country ='US', 'in US', 'outside US') AS US,
+    COUNT(user_country.user_guid)
+FROM
+    (
+    SELECT DISTINCT user_guid, country
+    FROM users
+    WHERE user_guid IS NOT NULL AND country IS NOT NULL
+     ) AS user_country
+GROUP BY
+    US;
+
+
+
+-- Exercise 2
+-- Write a query using a CASE statement that outputs 3 columns: dog_guid, exclude, and a third column that reads "exclude" every time there is a 1 in the "exclude" column of dogs and "keep" every time there is any other value in the exclude column. Limit your results for troubleshooting purposes
+
+SELECT
+    dog_guid,
+    exclude,
+CASE exclude
+    WHEN 1 THEN 'exclude'
+    ELSE 'keep'
+    END AS exclude_keep
+FROM dogs
+LIMIT 100;
+
+
+-- Exercise 3
+-- Re-write the preivios query 4 using an IF statement instead of a CASE statement.
+
+SELECT
+    dog_guid,
+    exclude,
+    IF(exclude = 1, 'exclude', 'keep') AS excluded
+FROM
+    dogs
+LIMIT
+    100;
+
+
+-- Exercise 4
+-- Write a query that uses a CASE expression to output 3 columns: dog_guid, weight, and a third column that reads...
+-- "very small" when a dog's weight is 1-10 pounds
+-- "small" when a dog's weight is greater than 10 pounds to 30 pounds
+-- "medium" when a dog's weight is greater than 30 pounds to 50 pounds
+-- "large" when a dog's weight is greater than 50 pounds to 85 pounds
+-- "very large" when a dog's weight is greater than 85 pounds
+-- Limit your results for troubleshooting purposes.
+
+-- Remember that when you use AND to define values between two boundaries, you need to include the variable name in all clauses that define the conditions of the values you want to extract. In other words, you could use this combined clause in your query: “WHEN weight>10 AND weight<=30 THEN "small" …but this combined clause would cause an error: “WHEN weight>10 AND <=30 THEN "small"
+
+SELECT
+    dog_guid,
+    weight
+CASE
+    WHEN weight <= 10 THEN 'very small'
+    WHEN weight > 10 AND weight <= 30 THEN 'small'
+    WHEN weight > 30 AND weight <= 50 THEN 'medium'
+    WHEN weight > 50 AND weight <= 85 THEN 'large'
+    WHEN weight > 85 THEN 'very large'
+    END AS description
+FROM dogs
+LIMIT 100;
+
+
+-- Exercise 5
+-- For each dog_guid, output its dog_guid, breed_type, number of completed tests, and use an IF statement to include an extra column that reads "Pure_Breed" whenever breed_type equals 'Pure Breed" and "Not_Pure_Breed" whenever breed_type equals anything else. LIMIT your output to 50 rows for troubleshooting. HINT: you will need to use a join to complete this query.
+
+SELECT
+    dogs.dog_guid,
+    dogs.breed_type,
+    COUNT(complete_tests.created_at),
+    IF(dogs.breed_type='Pure Breed','Pure Breed', 'Not Pure Breed') AS pure_breed
+FROM
+  dogs INNER JOIN complete_tests
+  ON dogs.dog_guid=complete_tests.dog_guid
+GROUP BY
+    dogs.dog_guid,
+    dogs.breed_type
+LIMIT
+    50;
+
+
+-- Exercise 6
+-- Write a query that uses a CASE statement to report the number of unique user_guids associated with customers who live in the United States and who are in the following groups of states:
+
+-- Group 1: New York (abbreviated "NY") or New Jersey (abbreviated "NJ")
+-- Group 2: North Carolina (abbreviated "NC") or South Carolina (abbreviated "SC")
+-- Group 3: California (abbreviated "CA")
+-- Group 4: All other states with non-null values
+
+SELECT
+    unique_users.user_guid,
+CASE
+    WHEN unique_users.state = 'NY' OR unique_users.state = 'NJ' THEN 'Group 1'
+    WHEN unique_users.state = 'NC' OR unique_users.state = 'SC' THEN 'Group 2'
+    WHEN unique_users.state = 'CA' THEN 'Group 3'
+    ELSE 'Group 4'
+    END AS groups,
+    COUNT(unique_users.user_guid)
+FROM
+    (
+      SELECT DISTINCT
+          user_guid,
+          state
+      FROM
+        users) AS unique_users
+GROUP BY
+    groups;
