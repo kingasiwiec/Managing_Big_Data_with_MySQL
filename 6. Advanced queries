@@ -196,3 +196,66 @@ GROUP BY
 
 
     
+-- Exercise 9
+-- Which 5 states within the United States have the most Dognition customers, once all dog_guids and user_guids with a value of "1" in their exclude columns are removed? 
+-- Try using the following general strategy: count how many unique user_guids are associated with dogs in the complete_tests table, break up the counts according to state, 
+-- sort the results by counts of unique user_guids in descending order, and then limit your output to 5 rows.
+
+
+SELECT
+    inner_query.state,
+    COUNT(inner_query.dog_guid)
+FROM
+    (
+      SELECT DISTINCT
+        dogs.dog_guid,
+        users.user_guid,
+        users.state
+      FROM
+        dogs INNER JOIN users
+        ON dogs.user_guid=users.user_guid
+      WHERE
+        (dogs.exclude = 0 OR dogs.exclude IS NULL)
+        AND (users.exclude = 0 or users.exclude IS NULL)
+      ) AS inner_query
+WHERE
+    inner_query.state <> 'N/A'
+    AND inner_query.state IS NOT NULL
+GROUP BY
+    inner_query.state
+ORDER BY
+    COUNT(inner_query.dog_guid) DESC
+LIMIT 5;
+
+
+
+
+-- Exercise 10
+-- Which 10 countries have the most Dognition customers, once all dog_guids and user_guids with a value of "1" in their exclude columns are removed?
+-- HINT: don't forget to remove the u.country="US" statement from your WHERE clause.
+
+
+SELECT
+    inner_query.country,
+    COUNT(inner_query.dog_guid)
+FROM
+    (
+      SELECT DISTINCT
+          dogs.dog_guid,
+          users.user_guid,
+          users.country
+      FROM
+          dogs INNER JOIN users
+          ON dogs.user_guid=users.user_guid
+      WHERE
+          (dogs.exclude = 0 OR dogs.exclude IS NULL)
+          AND (users.exclude = 0 OR users.exclude IS NULL)
+        ) AS inner_query
+WHERE
+    inner_query.country <> 'N/A'
+    AND inner_query.country IS NOT NULL
+GROUP BY
+    inner_query.country
+ORDER BY
+  COUNT(inner_query.dog_guid) DESC
+LIMIT 5;
