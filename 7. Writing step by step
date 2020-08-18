@@ -34,6 +34,7 @@ FROM
 LIMIT 200 OFFSET 50;
 
 
+
 -- Exercise 3
 -- Adapt the query you wrote in Question 2 to report the total number of tests completed on each weekday. Sort the results by the total number of tests completed in descending
 -- order.
