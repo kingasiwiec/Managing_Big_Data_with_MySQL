@@ -106,6 +106,8 @@ WHERE
     AND (users.exclude = 0 or users.exclude IS NULL);
 
 
+
+
 -- Exercise 6
 -- Now adapt your query from Question 4 so that it inner joins on the result of the subquery you wrote in Question 5 instead of the dogs table. This will give you a count 
 -- of the number of tests completed on each day of the week, excluding all of the dog_guids and user_guids that the Dognition team flagged in the exclude columns.
@@ -142,9 +144,12 @@ ORDER BY
 LIMIT 50;
 
 
+
+
 -- Exercise 7
 -- Adapt your query from Question 6 to provide a count of the number of tests completed on each weekday of each year in the Dognition data set. Exclude all dog_guids and 
 -- user_guids with a value of "1" in their exclude columns. Sort the output by year in ascending order, and then by the total number of tests completed in descending order.
+
 
 SELECT
     dayofweek(complete_tests.created_at),
