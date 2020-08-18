@@ -1,5 +1,7 @@
 -- Exercise 1
--- Use an IF expression and the query you wrote previousely as a subquery to determine the number of unique user_guids who reside in the United States (abbreviated "US") and outside of the US.
+-- Use an IF expression and the query you wrote previousely as a subquery to determine the number of unique user_guids who reside in the United States (abbreviated "US") 
+-- and outside of the US.
+
 
 SELECT
     IF(user_country.country ='US', 'in US', 'outside US') AS US,
@@ -16,7 +18,9 @@ GROUP BY
 
 
 -- Exercise 2
--- Write a query using a CASE statement that outputs 3 columns: dog_guid, exclude, and a third column that reads "exclude" every time there is a 1 in the "exclude" column of dogs and "keep" every time there is any other value in the exclude column. Limit your results for troubleshooting purposes
+-- Write a query using a CASE statement that outputs 3 columns: dog_guid, exclude, and a third column that reads "exclude" every time there is a 1 in the "exclude" column 
+-- of dogs and "keep" every time there is any other value in the exclude column. Limit your results for troubleshooting purposes
+
 
 SELECT
     dog_guid,
@@ -29,8 +33,10 @@ FROM dogs
 LIMIT 100;
 
 
+
 -- Exercise 3
 -- Re-write the preivios query 4 using an IF statement instead of a CASE statement.
+
 
 SELECT
     dog_guid,
@@ -50,8 +56,8 @@ LIMIT
 -- "large" when a dog's weight is greater than 50 pounds to 85 pounds
 -- "very large" when a dog's weight is greater than 85 pounds
 -- Limit your results for troubleshooting purposes.
-
 -- Remember that when you use AND to define values between two boundaries, you need to include the variable name in all clauses that define the conditions of the values you want to extract. In other words, you could use this combined clause in your query: “WHEN weight>10 AND weight<=30 THEN "small" …but this combined clause would cause an error: “WHEN weight>10 AND <=30 THEN "small"
+
 
 SELECT
     dog_guid,
@@ -70,6 +76,7 @@ LIMIT 100;
 -- Exercise 5
 -- For each dog_guid, output its dog_guid, breed_type, number of completed tests, and use an IF statement to include an extra column that reads "Pure_Breed" whenever breed_type equals 'Pure Breed" and "Not_Pure_Breed" whenever breed_type equals anything else. LIMIT your output to 50 rows for troubleshooting. HINT: you will need to use a join to complete this query.
 
+
 SELECT
     dogs.dog_guid,
     dogs.breed_type,
@@ -87,11 +94,11 @@ LIMIT
 
 -- Exercise 6
 -- Write a query that uses a CASE statement to report the number of unique user_guids associated with customers who live in the United States and who are in the following groups of states:
-
 -- Group 1: New York (abbreviated "NY") or New Jersey (abbreviated "NJ")
 -- Group 2: North Carolina (abbreviated "NC") or South Carolina (abbreviated "SC")
 -- Group 3: California (abbreviated "CA")
 -- Group 4: All other states with non-null values
+
 
 SELECT
     unique_users.user_guid,
