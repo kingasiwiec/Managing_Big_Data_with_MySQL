@@ -56,7 +56,9 @@ LIMIT
 -- "large" when a dog's weight is greater than 50 pounds to 85 pounds
 -- "very large" when a dog's weight is greater than 85 pounds
 -- Limit your results for troubleshooting purposes.
--- Remember that when you use AND to define values between two boundaries, you need to include the variable name in all clauses that define the conditions of the values you want to extract. In other words, you could use this combined clause in your query: “WHEN weight>10 AND weight<=30 THEN "small" …but this combined clause would cause an error: “WHEN weight>10 AND <=30 THEN "small"
+-- Remember that when you use AND to define values between two boundaries, you need to include the variable name in all clauses that define the conditions of the values you 
+-- want to extract. In other words, you could use this combined clause in your query: “WHEN weight>10 AND weight<=30 THEN "small" …but this combined clause would cause 
+-- an error: “WHEN weight>10 AND <=30 THEN "small"
 
 
 SELECT
@@ -74,7 +76,9 @@ LIMIT 100;
 
 
 -- Exercise 5
--- For each dog_guid, output its dog_guid, breed_type, number of completed tests, and use an IF statement to include an extra column that reads "Pure_Breed" whenever breed_type equals 'Pure Breed" and "Not_Pure_Breed" whenever breed_type equals anything else. LIMIT your output to 50 rows for troubleshooting. HINT: you will need to use a join to complete this query.
+-- For each dog_guid, output its dog_guid, breed_type, number of completed tests, and use an IF statement to include an extra column that reads "Pure_Breed" whenever 
+-- breed_type equals 'Pure Breed" and "Not_Pure_Breed" whenever breed_type equals anything else. LIMIT your output to 50 rows for troubleshooting. 
+-- HINT: you will need to use a join to complete this query.
 
 
 SELECT
@@ -93,7 +97,7 @@ LIMIT
 
 
 -- Exercise 6
--- Write a query that uses a CASE statement to report the number of unique user_guids associated with customers who live in the United States and who are in the following groups of states:
+-- Write a query that uses a CASE statement to report the number of unique user_guids associated with customers who live in the United States and  in the following states:
 -- Group 1: New York (abbreviated "NY") or New Jersey (abbreviated "NJ")
 -- Group 2: North Carolina (abbreviated "NC") or South Carolina (abbreviated "SC")
 -- Group 3: California (abbreviated "CA")
