@@ -29,8 +29,7 @@ ORDER BY
 
 SELECT
     test_name,
-    AVG(TIMESTAMPDIFF(hour, start_time, end_time))
-    AS time
+    AVG(TIMESTAMPDIFF(hour, start_time, end_time)) AS time
 FROM
     exam_answers
 WHERE
