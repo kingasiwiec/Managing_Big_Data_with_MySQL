@@ -39,8 +39,7 @@ HAVING
 
 
 -- Exercise 3
--- For which 3 dog breeds do we have the greatest amount of site_activity data, (as defined by non-NULL values in script_detail_id)(your answers should be "Mixed",
--- "Labrador Retriever", and "Labrador Retriever-Golden Retriever Mix"?
+-- For which 3 dog breeds do we have the greatest amount of site_activity data, (as defined by non-NULL values in script_detail_id)?
 
 
 SELECT
