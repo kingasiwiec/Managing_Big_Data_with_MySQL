@@ -43,7 +43,8 @@ FROM
       GROUP BY 
         dogs.dog_guid
       ) AS inner_query
-group by inner_query.dimension;
+GROUP BY
+    inner_query.dimension;
 
 
 
