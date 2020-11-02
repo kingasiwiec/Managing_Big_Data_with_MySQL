@@ -31,10 +31,17 @@ SELECT
     COUNT(dogid)
 FROM
     (
-      SELECT dogs.dog_guid AS dogid, dogs.dimension AS dimension
-      FROM dogs JOIN complete_tests ON dogs.dog_guid=complete_tests.dog_guid
-      WHERE dogs.dimension IS NULL OR dogs.dimension=''
-      GROUP BY dogs.dog_guid
+      SELECT 
+        dogs.dog_guid AS dogid, 
+        dogs.dimension AS dimension
+      FROM 
+        dogs JOIN complete_tests 
+        ON dogs.dog_guid=complete_tests.dog_guid
+      WHERE 
+        dogs.dimension IS NULL 
+        OR dogs.dimension=''
+      GROUP BY 
+        dogs.dog_guid
       ) AS inner_query
 group by inner_query.dimension;
 
