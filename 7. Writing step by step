@@ -181,5 +181,6 @@ GROUP BY
     year(complete_tests.created_at),
     daylabel
 ORDER BY
-    year(complete_tests.created_at) asc, count(complete_tests.created_at)
+    year(complete_tests.created_at) ASC, 
+    COUNT(complete_tests.created_at) DESC
 LIMIT 50;
